@@ -1,0 +1,12 @@
+C:\Users\jrush\Documents\Visual Studio 2015\Projects\BomboraXMLParser\BomboraXMLParser\bin\Debug\BomboraXMLParser.exe.config
+C:\Users\jrush\Documents\Visual Studio 2015\Projects\BomboraXMLParser\BomboraXMLParser\bin\Debug\BomboraXMLParser.exe
+C:\Users\jrush\Documents\Visual Studio 2015\Projects\BomboraXMLParser\BomboraXMLParser\bin\Debug\BomboraXMLParser.pdb
+C:\Users\jrush\Documents\Visual Studio 2015\Projects\BomboraXMLParser\BomboraXMLParser\obj\Debug\BomboraXMLParser.csprojResolveAssemblyReference.cache
+C:\Users\jrush\Documents\Visual Studio 2015\Projects\BomboraXMLParser\BomboraXMLParser\obj\Debug\BomboraXMLParser.exe
+C:\Users\jrush\Documents\Visual Studio 2015\Projects\BomboraXMLParser\BomboraXMLParser\obj\Debug\BomboraXMLParser.pdb
+C:\Users\Jason\Documents\Visual Studio 2017\Projects\Bombora\BomboraXMLParser\bin\Debug\BomboraXMLParser.exe.config
+C:\Users\Jason\Documents\Visual Studio 2017\Projects\Bombora\BomboraXMLParser\bin\Debug\BomboraXMLParser.exe
+C:\Users\Jason\Documents\Visual Studio 2017\Projects\Bombora\BomboraXMLParser\bin\Debug\BomboraXMLParser.pdb
+C:\Users\Jason\Documents\Visual Studio 2017\Projects\Bombora\BomboraXMLParser\obj\Debug\BomboraXMLParser.csprojResolveAssemblyReference.cache
+C:\Users\Jason\Documents\Visual Studio 2017\Projects\Bombora\BomboraXMLParser\obj\Debug\BomboraXMLParser.exe
+C:\Users\Jason\Documents\Visual Studio 2017\Projects\Bombora\BomboraXMLParser\obj\Debug\BomboraXMLParser.pdb

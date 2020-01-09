@@ -1,0 +1,141 @@
+'Modified 3/9/2017 by Jason Rush at UNR
+
+Function CopyData(SheetForSelection As String, TotalIndex As Integer, TableIndex As Integer, TerminateCell As Integer) As Integer
+    Dim temp As Variant
+    Sheets("AllDonations").Select
+    temp = Range(Cells(TotalIndex, "A"), Cells(TotalIndex, TerminateCell)).Value    'load the values of the range from column A "1983" until the last available year into "temp"
+    Sheets(SheetForSelection).Select                                                'select proper spreadsheet to work with
+    Range(Cells(TableIndex, "A"), Cells(TableIndex, TerminateCell)).Value = temp    'transfer all values from AllDonations into proper worksheet index
+    Sheets("AllDonations").Select                                                   'select AllDonations worksheet again
+    CopyData = TableIndex + 1                                                       'update index for proper storage of data in next sync
+End Function
+
+Sub WriteArrayToImmediateWindow(arrSubA As Variant)
+
+Dim rowString As String
+Dim iSubA As Long
+Dim jSubA As Long
+
+rowString = ""
+
+Debug.Print
+Debug.Print
+Debug.Print "The array is: "
+For iSubA = 1 To UBound(arrSubA, 1)
+    rowString = arrSubA(iSubA, 1)
+    For jSubA = 2 To UBound(arrSubA, 2)
+        rowString = rowString & "," & arrSubA(iSubA, jSubA)
+    Next jSubA
+    Debug.Print rowString
+Next iSubA
+
+End Sub
+
+Sub CalculateTotals(SheetForSelection As String, TableIndex As Integer, TerminateCell As Integer)
+    Dim Index As Integer
+    Index = 0
+    
+    Sheets(SheetForSelection).Select                                                            'select education worksheet
+    Range(Cells(TableIndex, "A"), Cells(TableIndex, TerminateCell)).Value = " "                 'wipe row from A to column that represents current year + 1 just underneath last transfered set of values
+    Range(Cells(TableIndex + 1, "A"), Cells(TableIndex + 1, TerminateCell)).Value = " "         'wipe row from A to column that represents current year + 1 just below one mentioned in previous comment
+    Cells(TableIndex + 1, "A").Value = "Total"                                                  'insert word "Total" into column A of row cleared in last line
+    For Index = 3 To TerminateCell                                                              'iterate rows from the starting to ending index as defined in "more variable declarations"
+        Set myRange = Range(Cells(6, Index), Cells(TableIndex, Index))                              'load variable "myRange" from initial (6,3) to total number of "purpose code 1" present
+        If Not myRange Is Nothing Then                                                              'error handling
+            If Not IsError(Found) Then
+                ' nothing
+            End If
+        End If
+        Cells(TableIndex + 1, Index).Value = "$" & Application.WorksheetFunction.Sum(myRange)   'insert dollar sign into cell and calculate sum for myRange
+    Next
+End Sub
+
+Sub UpdateButton()
+   Dim mindex As Integer
+   Dim myRange As Range
+   Dim x As Variant
+   Dim variable As String
+   Dim temp As Variant
+   Dim endCell As Variant
+   Dim total As Integer
+   Dim table1Index As Integer
+   Dim table2Index As Integer
+   Dim table3Index As Integer
+   Dim table4Index As Integer
+   Dim table5Index As Integer
+   Dim table6Index As Integer
+   Dim table7Index As Integer
+   Dim table8Index As Integer
+   Dim table9Index As Integer
+   table1Index = 6
+   table2Index = 6
+   table3Index = 6
+   table4Index = 6
+   table5Index = 6
+   table6Index = 6
+   table7Index = 6
+   table8Index = 6
+   table9Index = 6
+   endCell = Year(Date) - 1983 + 4
+   Sheets("AllDonations").Select                'start on "AllDonations" spreadsheet
+   
+   For Index = 6 To 10000                       'iterate until the 10,000th row starting at row 6
+        variable = Cells(Index, "b").Value      'select the purpose code column
+        If IsEmpty(variable) Then
+            Index = 10000
+        End If
+        x = Split(variable, ",")                'acquire each "purpose code"
+        For Each i In x                         'iterate through each "purpose code" present to conduct specific logic
+            If i = 1 Then                                                                           'trigger on purpose code '1'
+                table1Index = CopyData("Education", CInt(Index), CInt(table1Index), CInt(endCell))  'call function to copy data from main donation sheet to education sheet
+            End If
+            If i = 2 Then                                                                           'trigger on purpose code 2 (see above for details of logic done)
+                table2Index = CopyData("HealthCare", CInt(Index), CInt(table2Index), CInt(endCell))
+            End If
+            If i = 3 Then
+                table3Index = CopyData("HumRes", CInt(Index), CInt(table3Index), CInt(endCell))
+            End If
+            If i = 4 Then
+                table4Index = CopyData("ArtCult", CInt(Index), CInt(table4Index), CInt(endCell))
+            End If
+            If i = 5 Then
+                table5Index = CopyData("Religion", CInt(Index), CInt(table5Index), CInt(endCell))
+            End If
+            If i = 6 Then
+                table6Index = CopyData("EdSuppOutrch", CInt(Index), CInt(table6Index), CInt(endCell))
+            End If
+            If i = 7 Then
+                table7Index = CopyData("HPN", CInt(Index), CInt(table7Index), CInt(endCell))
+            End If
+            If i = 8 Then
+                table8Index = CopyData("AddTtmtRec", CInt(Index), CInt(table8Index), CInt(endCell))
+            End If
+            If i = 9 Then
+                table9Index = CopyData("WomInit", CInt(Index), CInt(table9Index), CInt(endCell))
+            End If
+        Next
+    Next
+    
+    'TOTALS FOR SHEET ONE
+        CalculateTotals "Education", CInt(table1Index), CInt(endCell)
+    'TOTALS FOR SHEET TWO
+        CalculateTotals "HealthCare", CInt(table2Index), CInt(endCell)
+    'TOTALS FOR SHEET THREE
+        CalculateTotals "HumRes", CInt(table3Index), CInt(endCell)
+     'TOTALS FOR SHEET FOUR
+        CalculateTotals "ArtCult", CInt(table4Index), CInt(endCell)
+    'TOTALS FOR SHEET FIVE
+        CalculateTotals "Religion", CInt(table5Index), CInt(endCell)
+    'TOTALS FOR SHEET SIX
+        CalculateTotals "EdSuppOutrch", CInt(table6Index), CInt(endCell)
+    'TOTALS FOR SHEET SEVEN
+        CalculateTotals "HPN", CInt(table7Index), CInt(endCell)
+    'TOTALS FOR SHEET EIGHT
+        CalculateTotals "AddTtmtRec", CInt(table8Index), CInt(endCell)
+    'TOTALS FOR SHEET NINE
+        CalculateTotals "WomInit", CInt(table9Index), CInt(endCell)
+    'GO BACK TO MAIN PAGE AND DISPLAY MESSAGE
+
+        Sheets("AllDonations").Select
+        MsgBox "Sync Complete"
+End Sub

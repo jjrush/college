@@ -1,0 +1,57 @@
+Answer the following questions:
+
+
+1.) What is an instance variable?
+An instance variable is a type of variable that is non-static and is available independently per object of a class.
+Example: objects 1 and 2 have an instance variable color but each object has a different value set (blue and orange, respectively).
+
+2.) How do you create an object of a class Vehicle?
+Vehicle myVehicle = new Vehicle();
+
+3.) What is a reference variable? How is it different from a primitive type?
+
+4.) What does it mean to pass by reference?
+
+5.) What makes up a method signature?
+
+6.) Write a method signature for a method divide() that takes two ints as parameters and returns a double.
+
+7.) When does a method stop executing? How can you make it terminate?
+
+8.) How do you return a String from a method?
+String method1(){return "potato";}
+
+9.) What is the return type of a method that does not returns any value?
+void
+
+10.) When should a method be static?
+When the method does not interact with any of the member variables in the class. Also reduces footprint of the code.
+
+11.) What is an example of a time you would make an instance variable static? final?
+Static: when you want to keep track of the total number of objects of that class created.
+Final:
+
+12.) When a method returns a value, what needs to be done with that value?
+
+13.) What is method overloading?
+
+14.) Demonstrate method overloading by writing the method signature of two overloaded methods.
+
+14.) What are constructors used for?
+To set intial values for members of a class (and set aside memory blocks for data structures).
+
+15.) If a class does not have a constructor, how does Java handle the creation of an object
+It creates a default constructor.
+
+16.) What does a constructor that takes in two variable, make and model, for a class Vehicle look like?
+Vehicle(String make, String model){this.make = make; this.model = model;}
+
+17.) What is the "this" keyword used for?
+Accessing the most immediate class "above" that the code is within scope of
+
+18.) What are the keywords public, private, protected used for in a class declaration? A method declaration? Variable declaration?
+
+19.) What is constructor overloading?
+
+20.) Demonstrate constructor overloading with three overloaded constructors.
+
